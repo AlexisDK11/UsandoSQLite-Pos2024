@@ -2,9 +2,10 @@ package com.projects.usandosqlite_pos2024.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.projects.usandosqlite_pos2024.adapter.entity.Cadastro
+import com.projects.usandosqlite_pos2024.entity.Cadastro
 
 class DatabaseHandler(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
 
@@ -96,5 +97,20 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context, DATABASE_NAME
             registros.add(cadastro)
         }
         return registros
+    }
+    fun cursorList() : Cursor {
+        val db = this.writableDatabase
+
+        val registro = db.query(
+            "cadastro",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        )
+
+        return registro
     }
 }
